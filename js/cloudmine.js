@@ -1833,6 +1833,7 @@
     opts.agent = false;
     opts.method = config.type;
     opts.headers = config.headers || {};
+    opts.timeout = config.timeout || 30000;
 
     // Preprocess data if it is JSON data.
     if (isObject(config.data) && config.processData) {
