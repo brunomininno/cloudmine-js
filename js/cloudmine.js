@@ -1,6 +1,6 @@
 /* CloudMine JavaScript Library v0.9.x cloudmine.me | cloudmine.me/license */
 (function() {
-  var version = '0.9.14';
+  var version = '0.9.15';
 
   /**
    * Construct a new WebService instance
@@ -1833,7 +1833,7 @@
     opts.agent = false;
     opts.method = config.type;
     opts.headers = config.headers || {};
-    opts.timeout = config.timeout || 30000;
+    opts.timeout = config.timeout || 90000;
 
     // Preprocess data if it is JSON data.
     if (isObject(config.data) && config.processData) {
@@ -1884,6 +1884,9 @@
         }
         if (config.complete) config.complete.call(cbContext, self, self._textStatus);
       });
+    });
+    this._request.setTimeout(opts.timeout, function() {
+      console.log('**** Request timeout: ');
     });
 
     // Handle request errors.
